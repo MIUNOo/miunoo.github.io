@@ -49,3 +49,227 @@
     padding-bottom: 56.25%; /* 保持 16:9 宽高比 */
   }
 }
+
+pre.pseudo {
+  background: #333232;
+  color: #ddd;
+  padding: 1rem 1.25rem;
+  overflow: auto;
+  border-radius: 8px;
+  font-family: "JetBrains Mono", Consolas, Menlo, monospace;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+pre.pseudo .kw   { color: #7aa2f7; font-weight: 600; }  /* keywords */
+pre.pseudo .num  { color: #e0af68; }                    /* numbers   */
+pre.pseudo .op   { color: #bb9af7; }                    /* operators */
+pre.pseudo .com  { color: #5c6370; font-style: italic;} /* comments  */
+
+.container {
+  margin: 1rem auto;                /* remove auto centering */
+  max-width: 125rem;          /* span full screen */
+  width: 100%;
+  padding-left: 2rem;       /* optional */
+  padding-right: 2rem;      /* optional */
+}
+
+/* Floating TOC Styles */
+.toc-toggle {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    cursor: pointer;
+    user-select: none;
+}
+
+.toc-dashes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.toc-toggle:hover .toc-dashes {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.dash {
+    width: 20px;
+    height: 2px;
+    background-color: #61afef;
+    border-radius: 1px;
+    transition: background-color 0.3s ease;
+}
+
+/* Dark mode dashes */
+body.colorscheme-dark .dash {
+    background-color: #61afef;
+}
+
+/* Light mode dashes */
+body.colorscheme-light .dash {
+    background-color: #0184bc;
+}
+
+.toc-list {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(45, 45, 45, 0.95);
+    border: 1px solid #3e3e3e;
+    border-radius: 8px;
+    padding: 16px 0;
+    min-width: 240px;
+    max-height: 70vh;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+/* Dark mode TOC list */
+body.colorscheme-dark .toc-list {
+    background-color: rgba(45, 45, 45, 0.95);
+    border: 1px solid #3e3e3e;
+}
+
+/* Light mode TOC list */
+body.colorscheme-light .toc-list {
+    background-color: rgba(240, 240, 240, 0.95);
+    border: 1px solid #d0d0d0;
+}
+
+.toc-toggle:hover .toc-list {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Reset ul/li styles */
+.toc-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.toc-list li {
+    margin: 0;
+    padding: 0;
+}
+
+.toc-list a {
+    display: block;
+    padding: 8px 16px;
+    color: #61afef;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Dark mode links */
+body.colorscheme-dark .toc-list a {
+    color: #61afef;
+}
+
+/* Light mode links */
+body.colorscheme-light .toc-list a {
+    color: #0184bc;
+}
+
+.toc-list a:hover {
+    background-color: rgba(97, 175, 239, 0.1);
+    border-left-color: #61afef;
+    padding-left: 20px;
+    transition: all 0.2s ease;
+}
+
+/* Light mode hover */
+body.colorscheme-light .toc-list a:hover {
+    background-color: rgba(1, 132, 188, 0.1);
+    border-left-color: #0184bc;
+}
+
+.toc-list a.active {
+    color: #c678dd;
+    border-left-color: #c678dd;
+    font-weight: 500;
+}
+
+/* Light mode active */
+body.colorscheme-light .toc-list a.active {
+    color: #a626a4;
+    border-left-color: #a626a4;
+}
+
+/* Second level headings (h3) indentation */
+.toc-list ul ul a {
+    padding-left: 32px;
+    color: #56b6c2;
+    font-size: 12px;
+}
+
+/* Light mode h3 */
+body.colorscheme-light .toc-list ul ul a {
+    color: #0184bc;
+}
+
+.toc-list ul ul a:hover {
+    padding-left: 36px;
+}
+
+/* Scrollbar styling */
+.toc-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.toc-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.colorscheme-light .toc-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.toc-list::-webkit-scrollbar-thumb {
+    background: rgba(97, 175, 239, 0.3);
+    border-radius: 3px;
+}
+
+body.colorscheme-light .toc-list::-webkit-scrollbar-thumb {
+    background: rgba(1, 132, 188, 0.3);
+    border-radius: 3px;
+}
+
+.toc-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(97, 175, 239, 0.6);
+}
+
+body.colorscheme-light .toc-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(1, 132, 188, 0.6);
+}
+
+@media (max-width: 1024px) {
+    .toc-toggle {
+        right: 12px;
+    }
+    .toc-list {
+        right: 12px;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .toc-toggle {
+        display: none;
+    }
+}
